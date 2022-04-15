@@ -1,4 +1,4 @@
-import getSudoku from '../services/getSudoku'
+import getSudoku from '../../services/getSudoku'
 import './styles.scss'
 
 export default function SudokuBoard () {

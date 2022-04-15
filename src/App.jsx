@@ -1,5 +1,5 @@
 import './App.css'
-import SudokuPage from './pages/SudokuPage'
+import SudokuPage from './pages/SudokuPage/SudokuPage'
 
 function App () {
   return (
