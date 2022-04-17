@@ -20,3 +20,19 @@ export default function getSudoku () {
   }
   return result
 }
+
+/*
+  sudoku = {
+    rows: [
+      {cols: [
+        {
+          row: n,
+          col: n,
+          value: n,
+          readOnly: bool
+        }],
+        index: n
+      }
+    ]
+  }
+*/

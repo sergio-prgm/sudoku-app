@@ -13,7 +13,7 @@ export default function SudokuBoard () {
       {
         sudoku.rows.map(row => <div className="row" key={row.index} >
           {row.cols.map(cell => {
-            return <SudokuCell cell={cell} setSudoku={setSudoku} key={cell.col} />
+            return <SudokuCell cell={cell} sudoku={sudoku} setSudoku={setSudoku} key={cell.col} />
           }
           )}
           </div>)
