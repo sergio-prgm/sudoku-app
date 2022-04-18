@@ -1,17 +1,22 @@
+$border_color: #aaa;
+
 
 .sudoku-board {
   display: grid;
   grid-template-rows: repeat(9, 1fr);
   width: 27rem;
   height: 27rem;
+  margin: 5rem auto;
+  position: relative;
   .row {
     display: grid;
     grid-template-columns: repeat(9, 1fr);
     gap: 0;
+    position: relative;
     .cell {
       margin: 0;
       padding: 0;
-      display: inline;
+      display: inline-block;
       font-size: 2rem;
       /*border: 1px solid;*/
       border: none;
@@ -22,6 +27,7 @@
       color: #222;
       background-color: #f7f7f7;
       font-weight: 500;
+      position: relative;
 
       &:read-only {
         background-color: #e0e0e0 ;
@@ -29,6 +35,16 @@
 
       &:focus {
         outline: none;
+      }
+
+      &:nth-child(3n + 1)::after {
+        content: '';
+        height: 2px;
+        width: 100%;
+        background-color: purple;
+        z-index: 999;
+        position: absolute;
+        top: 1rem
       }
     }
 
@@ -47,11 +63,35 @@
         background-color: #f3f3f3;
       }
     }
-
+    
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
       -webkit-appearance: none;
       margin: 0;
     }
+  }
+
+  &::before {
+    content: '';
+    width: calc(27rem + 2px);
+    height: 2px;
+    background-color: $border_color;
+    position: absolute;
+    top: 0;
+    left: 0px;
+    box-shadow: 0 9rem $border_color, 0 18rem $border_color, 0 27rem $border_color;
+    z-index: 999
+
+  }
+  
+  &::after {
+    content: '';
+    width: 2px;
+    height: calc(27rem + 2px);
+    background-color: $border_color;
+    position: absolute;
+    left: 0;
+    top: 0px;
+    box-shadow: 9rem 0 $border_color, 18rem 0 $border_color, 27rem 0 $border_color; 
   }
 }
