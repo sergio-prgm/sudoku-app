@@ -1,7 +1,7 @@
 import { sudokus } from '../assets/collection'
 
 export default function getSudoku () {
-  const rawSudoku = sudokus[1]
+  const rawSudoku = sudokus[4]
   const result = { rows: [] }
 
   for (let i = 0; i < 9; i++) {
