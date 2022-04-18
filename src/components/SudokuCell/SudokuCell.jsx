@@ -5,14 +5,14 @@ export default function SudokuCell ({ cell, setSudoku, sudoku }) {
   const [isCorrect, setIsCorrect] = useState(true)
 
   const handleChange = e => {
-    e.preventDefault()
+    // e.preventDefault()
     if (e.target.value > 1 || e.target.value < 9) {
       setSudoku(prevSudoku => {
         prevSudoku.rows[cell.row].cols[cell.col].value = Number(e.target.value) || 0
         return ({ ...prevSudoku })
       })
     }
-    console.log(e.target)
+    if (e.target.value > 9) { setIsCorrect(false) }
     setIsChanged(Boolean(e.target.value))
   }
 
@@ -53,23 +53,14 @@ function checkCell (cell, sudoku) {
     .filter(item => (item.row !== cell.row || item.col !== cell.col))
     .map(cell => cell.value)
 
-  const newSudoku = sudoku.rows.map(row => row.cols.map(obj => obj.value))
-
-  //  Check row
   const rowSet = new Set(rowArr)
   const colSet = new Set(colArr)
   const boxSet = new Set(boxArr)
-  // console.log(boxArr)
-  // console.log('rowSet', rowSet)
-  // console.log('colSet', colSet)
-  // console.log(rowSet.has(cell.value))
-  // console.log(rowArr)
-  // console.log(colArr)
-  // console.log(rowSet.has(cell.value))
-  if (cell.value !== 0 && (rowSet.has(cell.value) || colSet.has(cell.value) || boxSet.has(cell.value))) return false
+  if (cell.value !== 0 && (rowSet.has(cell.value) ||
+    colSet.has(cell.value) ||
+    boxSet.has(cell.value) ||
+    cell.value > 9 || cell.value < 0)) return false
   else return true
-
-  // if (rowSet.has(cell.value)) console.log(true)
 }
 
 // ✅· Array of box (map por el boxArr )
