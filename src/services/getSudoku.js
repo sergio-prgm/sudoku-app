@@ -1,7 +1,7 @@
 import { sudokus } from '../assets/collection'
 
-export default function getSudoku () {
-  const rawSudoku = sudokus[4]
+export default function getSudoku (num) {
+  const rawSudoku = sudokus[num]
   const result = { rows: [] }
 
   for (let i = 0; i < 9; i++) {
@@ -12,7 +12,8 @@ export default function getSudoku () {
         row: i,
         col: j,
         value: value,
-        readOnly: Boolean(value)
+        readOnly: Boolean(value),
+        isSelected: false
       }
       row.cols.push(col)
     }
