@@ -36,16 +36,6 @@ $border_color: #aaa;
       &:focus {
         outline: none;
       }
-
-      &:nth-child(3n + 1)::after {
-        content: '';
-        height: 2px;
-        width: 100%;
-        background-color: purple;
-        z-index: 999;
-        position: absolute;
-        top: 1rem
-      }
     }
 
     .incorrect {

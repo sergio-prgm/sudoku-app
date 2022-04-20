@@ -1,0 +1,13 @@
+.control-pad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 12rem;
+  max-height: 12rem;
+  margin-inline: auto;
+  gap: .5rem;
+
+  button {
+    height: 100%;
+    aspect-ratio: 1;
+  }
+}
