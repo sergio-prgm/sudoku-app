@@ -10,7 +10,7 @@ export default function SudoCell ({ cell }) {
 
   const handleClick = ev => {
     console.log(ev, cell)
-    setIsSelected(prevSel => !prevSel)
+    if (!cell.readOnly)setIsSelected(prevSel => !prevSel)
   }
 
   // console.log(isChanged)
@@ -31,7 +31,7 @@ export default function SudoCell ({ cell }) {
 
   return (
     <div
-      className={`cell ${isSelected ? 'selected' : ''}`}
+      className={`cell ${isSelected ? 'selected' : ''} ${cell.readOnly ? 'readOnly' : ''}`}
       onClick={handleClick}
     >{cell.value || ''}
     </div>
