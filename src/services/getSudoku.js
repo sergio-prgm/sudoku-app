@@ -13,7 +13,8 @@ export default function getSudoku (num) {
         col: j,
         value: value,
         readOnly: Boolean(value),
-        isSelected: false
+        isSelected: false,
+        isChanged: false
       }
       row.cols.push(col)
     }

@@ -9,15 +9,19 @@ function Key ({ num }) {
     const selCell = sudoku.rows.find(row => {
       return !!row.cols.find(cell => cell.isSelected)
     }).cols.find(cell => cell.isSelected)
+
     setSudoku(prevSudoku => {
-      prevSudoku.rows[selCell.row].cols[selCell.col].value = num
-      return ({ ...prevSudoku })
+      if (selCell) {
+        prevSudoku.rows[selCell.row].cols[selCell.col].value = num
+        prevSudoku.rows[selCell.row].cols[selCell.col].isChanged = Boolean(num)
+        return ({ ...prevSudoku })
+      }
     })
     console.log(selCell)
   }
   return (
     <button className="key" onClick={handleClick} >
-      {num}
+      {num || 'Del '}
     </button>
   )
 }

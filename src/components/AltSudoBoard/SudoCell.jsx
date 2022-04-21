@@ -5,12 +5,12 @@ export default function SudoCell ({ cell }) {
   const { sudoku, setSudoku } = useContext(AppContext)
 
   const [isSelected, setIsSelected] = useState(false)
-  const [isChanged, setIsChanged] = useState(false)
-  // const [isCorrect, setIsCorrect] = useState(true)
+  // const [isChanged, setIsChanged] = useState(false)
+  const [isCorrect, setIsCorrect] = useState(true)
 
   const handleClick = ev => {
     console.log(ev, cell)
-    if (!cell.readOnly)setIsSelected(prevSel => !prevSel)
+    if (!cell.readOnly) setIsSelected(prevSel => !prevSel)
   }
 
   // console.log(isChanged)
@@ -23,15 +23,18 @@ export default function SudoCell ({ cell }) {
   }, [isSelected])
 
   useEffect(() => {
-    if (!cell.readOnly && cell.value > 0) {
-      setIsChanged(Boolean(cell.value))
-      console.log(checkCell(cell, sudoku), cell)
+    if (cell.isChanged || cell.value === 0) {
+      setIsCorrect(checkCell(cell, sudoku))
     }
+    console.log(isCorrect, cell.isChanged)
   }, [sudoku])
 
   return (
     <div
-      className={`cell ${isSelected ? 'selected' : ''} ${cell.readOnly ? 'readOnly' : ''}`}
+      className={`cell 
+        ${isSelected && 'selected'}
+        ${cell.readOnly && 'readOnly'}
+        ${isCorrect || 'incorrect'}`}
       onClick={handleClick}
     >{cell.value || ''}
     </div>

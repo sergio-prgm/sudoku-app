@@ -29,6 +29,10 @@ $border_color: #aaa;
       font-weight: 500;
       position: relative;
 
+      &:not(.readOnly) {
+        cursor: pointer;
+      }
+
       &.readOnly {
         background-color: #e0e0e0 ;
       }
