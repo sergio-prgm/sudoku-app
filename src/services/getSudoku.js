@@ -14,7 +14,8 @@ export default function getSudoku (num) {
         value: value,
         readOnly: Boolean(value),
         isSelected: false,
-        isChanged: false
+        isChanged: false,
+        pencilMark: []
       }
       row.cols.push(col)
     }
