@@ -9,5 +9,11 @@
   button {
     height: 100%;
     aspect-ratio: 1;
+    &.controls-key {
+      font-size: 1.75rem;
+      &.small {
+        font-size: 1rem;
+      }
+    }
   }
 }

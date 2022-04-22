@@ -13,6 +13,7 @@ $border_color: #aaa;
     grid-template-columns: repeat(9, 1fr);
     gap: 0;
     position: relative;
+    
     .cell {
       margin: 0;
       padding: 0;
@@ -43,6 +44,12 @@ $border_color: #aaa;
 
       &.selected {
         background-color: hsl(39, 80%, 70%);
+      }
+    
+      .pencilMark {
+        font-size: 1rem;
+        display: block;
+        margin-top: .8rem;
       }
     }
 

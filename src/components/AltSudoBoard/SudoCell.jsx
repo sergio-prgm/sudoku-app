@@ -1,8 +1,9 @@
 import { useState, useEffect, useContext } from 'react'
 import { AppContext } from '../../pages/SudokuPage/SudokuPage'
+import PencilMarks from './PencilMarks'
 
 export default function SudoCell ({ cell }) {
-  const { sudoku, setSudoku } = useContext(AppContext)
+  const { sudoku, setSudoku, pencil, setPencil } = useContext(AppContext)
 
   const [isSelected, setIsSelected] = useState(false)
   // const [isChanged, setIsChanged] = useState(false)
@@ -14,6 +15,12 @@ export default function SudoCell ({ cell }) {
   }
 
   // console.log(isChanged)
+  // useEffect(() => {
+  //  if (!cell.readOnly) {
+  //    const pencilContent = { row: cell.row, col: cell.col, marks: new Set([]) }
+  //    setPencil(prevPencil => ([...prevPencil, pencilContent]))
+  //  }
+  // }, [])
 
   useEffect(() => {
     setSudoku(prevSudoku => {
@@ -29,14 +36,20 @@ export default function SudoCell ({ cell }) {
     console.log(isCorrect, cell.isChanged)
   }, [sudoku])
 
+  // <div >{pencil.map(mark => <span key={mark}>{mark}</span>)}</div>
+
   return (
     <div
       className={`cell 
         ${isSelected && 'selected'}
         ${cell.readOnly && 'readOnly'}
         ${isCorrect || 'incorrect'}`}
-      onClick={handleClick}
-    >{cell.value || ''}
+        onClick={handleClick}
+      >
+      {!cell.value && <PencilMarks cell={cell} />}
+      <div
+      >{cell.value || ''}
+      </div>
     </div>
   )
 }
