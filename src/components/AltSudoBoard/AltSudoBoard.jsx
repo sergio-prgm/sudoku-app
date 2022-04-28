@@ -1,9 +1,9 @@
 import { useContext } from 'react'
 import { AppContext } from '../../pages/SudokuPage/SudokuPage'
-import SudoCell from './SudoCell'
+import Cell from '../Cell/Cell'
 import './styles.scss'
 
-export default function AltSudoBoard () {
+export default function AltSudoBoard() {
   const { sudoku } = useContext(AppContext)
 
   console.log(sudoku)
@@ -12,10 +12,10 @@ export default function AltSudoBoard () {
       {
         sudoku.rows.map(row => <div className="row" key={row.index} >
           {row.cols.map(cell => {
-            return <SudoCell cell={cell} key={cell.col} />
+            return <Cell cell={cell} key={cell.col} />
           }
           )}
-          </div>)
+        </div>)
       }
     </div>
   )

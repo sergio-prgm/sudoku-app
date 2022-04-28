@@ -1,8 +1,8 @@
 import { useState, useEffect, useContext } from 'react'
 import { AppContext } from '../../pages/SudokuPage/SudokuPage'
-import PencilMarks from './PencilMarks'
+import PencilMarks from '../PencilMarks/PencilMarks'
 
-export default function SudoCell ({ cell }) {
+export default function Cell({ cell }) {
   const { sudoku, setSudoku, pencil, setPencil } = useContext(AppContext)
 
   const [isSelected, setIsSelected] = useState(false)
@@ -44,8 +44,8 @@ export default function SudoCell ({ cell }) {
         ${isSelected && 'selected'}
         ${cell.readOnly && 'readOnly'}
         ${isCorrect || 'incorrect'}`}
-        onClick={handleClick}
-      >
+      onClick={handleClick}
+    >
       {!cell.value && <PencilMarks cell={cell} />}
       <div
       >{cell.value || ''}
@@ -54,7 +54,7 @@ export default function SudoCell ({ cell }) {
   )
 }
 
-function checkCell (cell, sudoku) {
+function checkCell(cell, sudoku) {
   const box = [Math.floor(cell.row / 3), Math.floor(cell.col / 3)]
   const rowArr = sudoku.rows[cell.row].cols
     .filter(item => item.col !== cell.col)
