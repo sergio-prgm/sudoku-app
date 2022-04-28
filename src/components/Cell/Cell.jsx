@@ -10,7 +10,7 @@ export default function Cell({ cell }) {
   const [isCorrect, setIsCorrect] = useState(true)
 
   const handleClick = ev => {
-    console.log(ev, cell)
+    // console.log(ev, cell)
     if (!cell.readOnly) setIsSelected(prevSel => !prevSel)
   }
 
@@ -33,7 +33,7 @@ export default function Cell({ cell }) {
     if (cell.isChanged || cell.value === 0) {
       setIsCorrect(checkCell(cell, sudoku))
     }
-    console.log(isCorrect, cell.isChanged)
+    // console.log(isCorrect, cell.isChanged)
   }, [sudoku])
 
   // <div >{pencil.map(mark => <span key={mark}>{mark}</span>)}</div>

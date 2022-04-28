@@ -6,7 +6,7 @@ import './styles.scss'
 export default function AltSudoBoard() {
   const { sudoku } = useContext(AppContext)
 
-  console.log(sudoku)
+  // console.log(sudoku)
   return (
     <div className="sudoku-board">
       {
