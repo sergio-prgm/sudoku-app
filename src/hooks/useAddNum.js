@@ -1,12 +1,11 @@
 import { useContext, useEffect } from 'react'
-import { AppContext } from '../pages/SudokuPage/SudokuPage'
+import SudokuContext from '../context/SudokuContext'
 
 export default function useAddNum (num, isNormal, isClicked) {
-  const { sudoku, setSudoku, pencil, setPencil } = useContext(AppContext)
+  const { sudoku, setSudoku, pencil, setPencil } = useContext(SudokuContext)
 
   useEffect(() => {
     if (!isClicked) return
-    console.log('addnum')
     const selCell = sudoku.rows.find(row => {
       return !!row.cols.find(cell => cell.isSelected)
     }).cols.find(cell => cell.isSelected)

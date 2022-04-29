@@ -1,13 +1,12 @@
-import { sudokus } from '../assets/collection'
+import sudokuCollection from '../assets/sudokuCollection.txt'
 
-export default function getSudoku (num) {
-  const rawSudoku = sudokus[num]
+const generateSudoku = (response) => {
   const result = { rows: [] }
 
   for (let i = 0; i < 9; i++) {
     const row = { cols: [], index: i }
     for (let j = 0; j < 9; j++) {
-      const value = Number(rawSudoku[i * 9 + j])
+      const value = Number(response[i * 9 + j])
       const col = {
         row: i,
         col: j,
@@ -22,6 +21,15 @@ export default function getSudoku (num) {
     result.rows.push(row)
   }
   return result
+}
+
+export default function getSudoku (num) {
+  // let sudokuSet
+  return fetch(sudokuCollection)
+    .then(response => response.text())
+    .then(response => response.split('\n')[num])
+    .then(response => generateSudoku(response))
+    //  sudokuSet = result.split('\n')
 }
 
 /*

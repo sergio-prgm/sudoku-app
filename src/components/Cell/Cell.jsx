@@ -1,9 +1,9 @@
 import { useState, useEffect, useContext } from 'react'
-import { AppContext } from '../../pages/SudokuPage/SudokuPage'
+import SudokuContext from '../../context/SudokuContext'
 import PencilMarks from '../PencilMarks/PencilMarks'
 
-export default function Cell({ cell }) {
-  const { sudoku, setSudoku, pencil, setPencil } = useContext(AppContext)
+export default function Cell ({ cell }) {
+  const { sudoku, setSudoku } = useContext(SudokuContext)
 
   const [isSelected, setIsSelected] = useState(false)
   // const [isChanged, setIsChanged] = useState(false)
@@ -54,7 +54,7 @@ export default function Cell({ cell }) {
   )
 }
 
-function checkCell(cell, sudoku) {
+function checkCell (cell, sudoku) {
   const box = [Math.floor(cell.row / 3), Math.floor(cell.col / 3)]
   const rowArr = sudoku.rows[cell.row].cols
     .filter(item => item.col !== cell.col)

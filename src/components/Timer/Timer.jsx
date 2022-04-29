@@ -1,8 +1,7 @@
-import { useRef, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 function Timer () {
-  const [time, setTime] = useState(55)
-  const renders = useRef(0)
+  const [time, setTime] = useState(0)
 
   const renderTime = () => {
     setInterval(() => {
@@ -11,9 +10,10 @@ function Timer () {
   }
 
   const formatTime = time => {
-    let mins = Math.floor(time / 60)
-    let secs = time % 60
-    let finalS = secs / 10 >= 1 ? secs.toString()
+    const mins = Math.floor(time / 60)
+    const secs = time % 60
+    const finalS = secs / 10 >= 1
+      ? secs.toString()
       : `0${secs}`
     return `${mins}:${finalS}`
   }
@@ -21,7 +21,7 @@ function Timer () {
   useEffect(() => {
     renderTime()
   }, [])
-  
+
   return (
     <div>
       Time: {

@@ -1,10 +1,13 @@
 import './App.css'
 import SudokuPage from './pages/SudokuPage/SudokuPage'
+import { SudokuContextProvider } from './context/SudokuContext'
 
 function App () {
   return (
     <div className="App">
-      <SudokuPage />
+      <SudokuContextProvider >
+        <SudokuPage />
+      </SudokuContextProvider>
     </div>
   )
 }
