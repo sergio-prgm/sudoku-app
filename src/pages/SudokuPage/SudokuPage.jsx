@@ -1,9 +1,9 @@
+import { createContext, useState, useEffect } from 'react'
+import getSudoku from '../../services/getSudoku'
 import './SudokuPage.scss'
-// import SudokuBoard from '../../components/SudokuBoard/SudokuBoard'
 import Controls from '../../components/Controls/Controls'
 import AltSudoBoard from '../../components/AltSudoBoard/AltSudoBoard'
-import getSudoku from '../../services/getSudoku'
-import { createContext, useState } from 'react'
+import Timer from '../../components/Timer/Timer'
 
 export const AppContext = createContext()
 
@@ -22,9 +22,10 @@ export default function SudokuPage() {
   return (
     <>
       <AppContext.Provider value={{ sudoku, setSudoku, pencil, setPencil }}>
+        <Timer />
         <AltSudoBoard />
         <Controls />
       </AppContext.Provider>
-    </   >
+    </ >
   )
 }
