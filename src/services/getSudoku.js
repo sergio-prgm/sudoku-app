@@ -1,4 +1,5 @@
-import sudokuCollection from '../assets/sudokuCollection.txt'
+import hard50000 from '../assets/hard50000.txt'
+import easy2500 from '@/assets/easy2500.txt'
 
 const generateSudoku = (response) => {
   const result = { rows: [] }
@@ -12,9 +13,8 @@ const generateSudoku = (response) => {
         col: j,
         value: value,
         readOnly: Boolean(value),
-        isSelected: false,
         isChanged: false,
-        pencilMark: []
+        isCorrect: true
       }
       row.cols.push(col)
     }
@@ -25,7 +25,7 @@ const generateSudoku = (response) => {
 
 export default function getSudoku (num) {
   // let sudokuSet
-  return fetch(sudokuCollection)
+  return fetch(easy2500)
     .then(response => response.text())
     .then(response => response.split('\n')[num])
     .then(response => generateSudoku(response))

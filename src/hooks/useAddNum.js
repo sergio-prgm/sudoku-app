@@ -2,23 +2,20 @@ import { useContext, useEffect } from 'react'
 import SudokuContext from '../context/SudokuContext'
 
 export default function useAddNum (num, isNormal, isClicked) {
-  const { sudoku, setSudoku, pencil, setPencil } = useContext(SudokuContext)
+  const { sudoku, setSudoku, pencil, setPencil, selectedCell } = useContext(SudokuContext)
 
   useEffect(() => {
     if (!isClicked) return
-    const selCell = sudoku.rows.find(row => {
-      return !!row.cols.find(cell => cell.isSelected)
-    }).cols.find(cell => cell.isSelected)
     if (isNormal) {
       setSudoku(prevSudoku => {
-        if (selCell) {
-          prevSudoku.rows[selCell.row].cols[selCell.col].value = num
-          prevSudoku.rows[selCell.row].cols[selCell.col].isChanged = Boolean(num)
+        if (selectedCell) {
+          prevSudoku.rows[selectedCell.row].cols[selectedCell.col].value = num
+          prevSudoku.rows[selectedCell.row].cols[selectedCell.col].isChanged = Boolean(num)
           return ({ ...prevSudoku })
         }
       })
     } else {
-      const selPencil = pencil.find(cell => selCell.col === cell.col && selCell.row === cell.row)
+      const selPencil = pencil.find(cell => selectedCell.col === cell.col && selectedCell.row === cell.row)
       if (!num) {
         setPencil(prevPencil => {
           const pencilMarks = prevPencil.filter(obj => obj !== selPencil)
