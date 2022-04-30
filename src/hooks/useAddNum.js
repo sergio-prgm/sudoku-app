@@ -5,7 +5,8 @@ export default function useAddNum (num, isNormal, isClicked) {
   const { sudoku, setSudoku, pencil, setPencil, selectedCell } = useContext(SudokuContext)
 
   useEffect(() => {
-    if (!isClicked) return
+    if (!isClicked || !selectedCell) return
+    console.log('haciendo')
     if (isNormal) {
       setSudoku(prevSudoku => {
         if (selectedCell) {
