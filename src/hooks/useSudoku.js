@@ -16,7 +16,7 @@ export default function useSudoku (num) {
       setPencil(
         sudoku.rows.map(row => {
           return row.cols.filter(col => !col.readOnly)
-            .map(({ row, col }) => ({ row, col, marks: new Set([]) }))
+            .map(({ row, col }) => ({ row, col, marks: new Set([]), isCorrect: true }))
         }).flat()
       )
     }

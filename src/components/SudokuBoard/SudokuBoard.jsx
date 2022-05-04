@@ -3,7 +3,8 @@ import Cell from '../Cell/Cell'
 import './styles.scss'
 
 export default function SudokuBoard () {
-  const { sudoku } = useSudoku(330)
+  const randomNumber = Math.floor(Math.random() * 2500)
+  const { sudoku } = useSudoku(0)
 
   return (
     <div className="sudoku-board">

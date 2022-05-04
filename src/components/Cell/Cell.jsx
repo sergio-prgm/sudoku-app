@@ -3,7 +3,7 @@ import SudokuContext from '../../context/SudokuContext'
 import PencilMarks from '../PencilMarks/PencilMarks'
 
 export default function Cell ({ cell }) {
-  const { sudoku, selectedCell, setSelectedCell } = useContext(SudokuContext)
+  const { sudoku, pencil, setPencil, selectedCell, setSelectedCell } = useContext(SudokuContext)
 
   const [isCorrect, setIsCorrect] = useState(true)
 
@@ -17,8 +17,16 @@ export default function Cell ({ cell }) {
   }
 
   useEffect(() => {
-    if (cell.isChanged || cell.value === 0) {
+    if (cell.isChanged) {
       setIsCorrect(checkCell(cell, sudoku))
+      if (cell === selectedCell) {
+        const selPencil = pencil.find(cell => selectedCell.col === cell.col && selectedCell.row === cell.row)
+        setPencil(pencil => {
+          const pencilMarks = pencil.filter(obj => obj !== selPencil)
+          selPencil.isCorrect = checkCell(cell, sudoku)
+          return [...pencilMarks, selPencil]
+        })
+      }
     }
   }, [sudoku])
 

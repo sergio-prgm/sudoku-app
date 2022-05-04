@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import useAddNum from '../../hooks/useAddNum'
 import Key from '../Key/Key'
+import Solver from '../Solver/Solver'
 import './styles.scss'
 
 export default function Controls () {
@@ -9,19 +10,19 @@ export default function Controls () {
   const [isNormal, setIsNormal] = useState(true)
   const [keyEvent, setKeyEvent] = useState()
 
-  const handleKeyboard = useCallback( event => {
+  const handleKeyboard = useCallback(event => {
     const eKey = event.key
     if (keys.some(key => key == eKey)) setKeyEvent(event)
     if (event.key === 'Backspace') setKeyEvent(event)
   })
-  
+
   useAddNum(Number(keyEvent?.key) || 0, isNormal, keyEvent)
 
   useEffect(() => {
-    document.addEventListener("keydown", handleKeyboard)
+    document.addEventListener('keydown', handleKeyboard)
 
     return () => {
-      document.removeEventListener("keydown", handleKeyboard)
+      document.removeEventListener('keydown', handleKeyboard)
     }
   })
   return (
@@ -33,6 +34,7 @@ export default function Controls () {
       <button className='controls-button' onClick={() => setIsNormal(false)}>
         Small
       </button>
+      <Solver />
     </div >
     <div className='control-pad' onKeyDown={handleKeyboard}>
       {keys.map(key => {
