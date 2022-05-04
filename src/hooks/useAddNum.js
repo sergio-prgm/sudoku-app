@@ -6,7 +6,7 @@ export default function useAddNum (num, isNormal, isClicked) {
 
   useEffect(() => {
     if (!isClicked || !selectedCell) return
-    console.log('haciendo')
+    // console.log('haciendo')
     if (isNormal) {
       setSudoku(prevSudoku => {
         if (selectedCell) {
