@@ -17,16 +17,16 @@ export default function Cell ({ cell }) {
   }
 
   useEffect(() => {
-    if (cell.isChanged) {
-      setIsCorrect(checkCell(cell, sudoku))
-      if (cell === selectedCell) {
-        const selPencil = pencil.find(cell => selectedCell.col === cell.col && selectedCell.row === cell.row)
-        setPencil(pencil => {
-          const pencilMarks = pencil.filter(obj => obj !== selPencil)
-          selPencil.isCorrect = checkCell(cell, sudoku)
-          return [...pencilMarks, selPencil]
-        })
-      }
+    setIsCorrect(checkCell(cell, sudoku))
+    console.log('pre-checking')
+    if (cell === selectedCell) {
+      const selPencil = pencil.find(cell => selectedCell.col === cell.col && selectedCell.row === cell.row)
+      setPencil(pencil => {
+        const pencilMarks = pencil.filter(obj => obj !== selPencil)
+        selPencil.isCorrect = checkCell(cell, sudoku)
+        return [...pencilMarks, selPencil]
+      })
+      console.log('checking')
     }
   }, [sudoku])
 
