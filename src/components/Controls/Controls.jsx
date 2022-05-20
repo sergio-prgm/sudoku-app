@@ -10,7 +10,12 @@ export default function Controls () {
   const [isNormal, setIsNormal] = useState(true)
   const [keyEvent, setKeyEvent] = useState()
 
-  const handleKeyboard = useCallback(event => {
+  const handleMode = useCallback(event => {
+    if (event.key === 'd') setIsNormal(true)
+    if (event.key === 'c') setIsNormal(false)
+  })
+
+  const handleKey = useCallback(event => {
     const eKey = event.key
     if (keys.some(key => key == eKey)) setKeyEvent(event)
     if (event.key === 'Backspace') setKeyEvent(event)
@@ -19,24 +24,30 @@ export default function Controls () {
   useAddNum(Number(keyEvent?.key) || 0, isNormal, keyEvent)
 
   useEffect(() => {
-    document.addEventListener('keydown', handleKeyboard)
-
+    document.addEventListener('keydown', handleKey)
     return () => {
-      document.removeEventListener('keydown', handleKeyboard)
+      document.removeEventListener('keydown', handleKey)
+    }
+  })
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleMode)
+    return () => {
+      document.removeEventListener('keydown', handleMode)
     }
   })
   return (
     <>
-    <div>
+    <div onKeyDown={handleMode}>
       <button className='controls-button' onClick={() => setIsNormal(true)}>
-        Normal
+        Digit
       </button>
       <button className='controls-button' onClick={() => setIsNormal(false)}>
-        Small
+        Candidate
       </button>
       <Solver />
     </div >
-    <div className='control-pad' onKeyDown={handleKeyboard}>
+    <div className='control-pad' onKeyDown={handleKey}>
       {keys.map(key => {
         return <Key className={`controls-key ${isNormal || 'small'}`} isNormal={isNormal} num={key} key={key} />
       })}
