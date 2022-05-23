@@ -2,7 +2,49 @@ import hard50000 from '../assets/hard50000.txt'
 import easy2500 from '@/assets/easy2500.txt'
 
 const generateSudoku = (response) => {
-  const result = { rows: [] }
+  const result = []
+
+  response
+    .split('')
+    .filter(value => value !== '\r')
+    .forEach((value, index) => {
+      const cell = new Cell(index, Number(value))
+      result.push(cell)
+    })
+  return result
+}
+
+class Cell {
+  constructor (index, value) {
+    this.index = index
+    this.value = value
+    this.changed = false
+    this.isCorrect = true
+  }
+
+  get readOnly () {
+    return Boolean(this.value)
+  }
+
+  get row () {
+    return Math.floor(this.index / 9)
+  }
+
+  get col () {
+    return Math.floor(this.index % 9)
+  }
+}
+
+export default function getSudoku (num) {
+  return fetch(easy2500)
+    .then(response => response.text())
+    .then(response => response.split('\n')[num])
+    .then(response => generateSudoku(response))
+}
+
+/*
+const generateSudoku = (response) => {
+  const result = []
 
   for (let i = 0; i < 9; i++) {
     const row = { cols: [], index: i }
@@ -18,20 +60,12 @@ const generateSudoku = (response) => {
       }
       row.cols.push(col)
     }
-    result.rows.push(row)
+    result.push(row)
   }
+  console.log(result)
   return result
 }
-
-export default function getSudoku (num) {
-  // let sudokuSet
-  return fetch(easy2500)
-    .then(response => response.text())
-    .then(response => response.split('\n')[num])
-    .then(response => generateSudoku(response))
-    //  sudokuSet = result.split('\n')
-}
-
+*/
 /*
   sudoku = {
     rows: [

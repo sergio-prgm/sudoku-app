@@ -14,11 +14,11 @@ export default function useSudoku (num) {
   useEffect(() => {
     if (sudoku && !pencil) {
       setPencil(
-        sudoku.rows.map(row => {
-          return row.cols.filter(col => !col.readOnly)
-            .map(({ row, col }) => ({ row, col, marks: new Set([]), isCorrect: true }))
-        }).flat()
-      )
+        sudoku
+          .filter(cell => !cell.readOnly)
+          .map(({ row, col, isCorrect }) =>
+            ({ row, col, marks: new Set([]), isCorrect })
+          ))
     }
   }, [sudoku, setPencil])
   return { sudoku, pencil, setPencil }

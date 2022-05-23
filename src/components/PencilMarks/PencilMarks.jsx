@@ -5,7 +5,6 @@ function PencilMarks ({ cell }) {
   const { pencil } = useContext(SudokuContext)
   const [pencilMarks, setPencilMarks] = useState(false)
 
-  // console.log(Array.from(pencilMarks))
   useEffect(() => {
     if (!pencil) return
     setPencilMarks(pencil.find(penCell => penCell.col === cell.col && penCell.row === cell.row).marks)

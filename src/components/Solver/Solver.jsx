@@ -9,7 +9,7 @@ function Solver () {
 
   const checkChanged = () => {
     if (!sudoku) return
-    return sudoku.rows.map(row => row.cols.filter(cell => !cell.readOnly && !cell.isChanged)).flat()
+    return sudoku.filter(cell => !cell.readOnly && !cell.isChanged)
   }
 
   const checkIsTrue = () => {
@@ -18,10 +18,7 @@ function Solver () {
   }
 
   const handleClick = () => {
-    console.log(checkChanged().length)
-    console.log(checkIsTrue())
     setShowResult(prev => !prev)
-    // !checkChanged().length && !checkIsTrue().length && setIsSolved(true)
   }
 
   useEffect(() => {
@@ -38,4 +35,3 @@ function Solver () {
 }
 
 export default Solver
-// !checkChanged().length &&

@@ -6,13 +6,12 @@ export default function useAddNum (num, isNormal, isClicked) {
 
   useEffect(() => {
     if (!isClicked || !selectedCell) return
-    // console.log('haciendo')
     if (isNormal) {
       setSudoku(prevSudoku => {
         if (selectedCell) {
-          prevSudoku.rows[selectedCell.row].cols[selectedCell.col].value = num
-          prevSudoku.rows[selectedCell.row].cols[selectedCell.col].isChanged = Boolean(num)
-          return ({ ...prevSudoku })
+          prevSudoku[selectedCell.index].value = num
+          prevSudoku[selectedCell.index].isChanged = Boolean(num)
+          return ([...prevSudoku])
         }
       })
     } else {
