@@ -20,10 +20,7 @@ class Cell {
     this.value = value
     this.changed = false
     this.isCorrect = true
-  }
-
-  get readOnly () {
-    return Boolean(this.value)
+    this.readOnly = Boolean(value)
   }
 
   get row () {
