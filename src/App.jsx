@@ -6,10 +6,12 @@ import Home from '@/pages/Home/Home'
 import Login from '@/pages/Login/Login'
 import Register from '@/pages/Register/Register'
 import NotFound from '@/pages/NotFound/NotFound'
+import Header from '@/components/Header/Header'
 
 function App () {
   return (
     <div className="App">
+      <Header />
       <Switch>
         <Route component={Home} path='/' />
         <Route component={Register} path='/register' />

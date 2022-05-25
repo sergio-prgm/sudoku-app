@@ -6,7 +6,6 @@ import { useRoute } from 'wouter'
 export default function SudokuBoard () {
   const [, params] = useRoute('/sudoku/:dif/:index')
   const { dif: difficulty, index } = params
-  console.log(difficulty)
   const { sudoku } = useSudoku(index, difficulty)
 
   const renderit = () => {
