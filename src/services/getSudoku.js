@@ -35,8 +35,14 @@ class Cell {
   }
 }
 
-export default function getSudoku (num) {
-  return fetch(easy2500)
+const collection = {
+  e: easy2500,
+  m: easy2500,
+  h: hard50000
+}
+
+export default function getSudoku (num, difficulty) {
+  return fetch(collection[difficulty])
     .then(response => response.text())
     .then(response => response.split('\n')[num])
     .then(response => generateSudoku(response))

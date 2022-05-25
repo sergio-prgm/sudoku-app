@@ -1,10 +1,13 @@
 import useSudoku from '../../hooks/useSudoku'
 import Cell from '../Cell/Cell'
 import './styles.scss'
+import { useRoute } from 'wouter'
 
 export default function SudokuBoard () {
-  const randomNumber = Math.floor(Math.random() * 2500)
-  const { sudoku } = useSudoku(0)
+  const [, params] = useRoute('/sudoku/:dif/:index')
+  const { dif: difficulty, index } = params
+  console.log(difficulty)
+  const { sudoku } = useSudoku(index, difficulty)
 
   const renderit = () => {
     const newSudoku = []
