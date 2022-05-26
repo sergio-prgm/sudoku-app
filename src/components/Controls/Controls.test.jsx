@@ -1,7 +1,7 @@
 
 import '@testing-library/jest-dom'
 import { findByText, fireEvent, render } from '@testing-library/react'
-import { it } from 'vitest'
+import { describe, it } from 'vitest'
 import Controls from './Controls'
 
 it('renders correctly', () => {
@@ -11,18 +11,43 @@ it('renders correctly', () => {
   // expect(component.container).toHaveTextContent(/2/i)
 })
 
-it('renders buttons', () => {
-  const component = render(<Controls />)
+describe('Controls component', () => {
+  it('renders mode buttons correctly', () => {
+    const component = render(<Controls />)
 
-  component.getByRole('button', { name: 'Digit' })
-})
+    component.getByRole('button', { name: 'Digit' })
+  })
 
-it('clicking the button changes stuff', async () => {
-  const component = render(<Controls />)
+  it('clicking the mode button changes stuff', async () => {
+    const component = render(<Controls />)
 
-  const candidateButton = component.getByText(/candidate/i)
-  fireEvent.click(candidateButton)
+    const candidateButton = component.getByText(/candidate/i)
+    fireEvent.click(candidateButton)
 
-  const key = component.getByText('2')
-  expect(key).toHaveClass('small')
+    const key = component.getByText('2')
+    expect(key).toHaveClass('small')
+  })
+
+  it('pressing the correct key changes stuff', async () => {
+    const component = render(<Controls />)
+
+    const candidateButton = component.getByText(/candidate/i)
+    const key = component.getByText('2')
+
+    fireEvent.keyDown(candidateButton, { key: 'c', code: 'KeyC' })
+    expect(key).toHaveClass('small')
+
+    fireEvent.keyDown(candidateButton, { key: 'd', code: 'KeyD' })
+    expect(key).not.toHaveClass('small')
+  })
+
+  it('pressing key of current mode doesn\'t change anything', async () => {
+    const component = render(<Controls />)
+
+    const candidateButton = component.getByText(/candidate/i)
+    const key = component.getByText('2')
+
+    fireEvent.keyDown(candidateButton, { key: 'd', code: 'KeyD' })
+    expect(key).not.toHaveClass('small')
+  })
 })
