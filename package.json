@@ -8,11 +8,12 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "test": "vitest"    
+    "test": "vitest"
   },
   "dependencies": {
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-hook-form": "7.31.2",
     "wouter": "2.8.0-alpha.2"
   },
   "devDependencies": {
