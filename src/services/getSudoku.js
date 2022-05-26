@@ -1,5 +1,6 @@
-import hard50000 from '../assets/hard50000.txt'
-import easy2500 from '@/assets/easy2500.txt'
+import hard50000 from '@/assets/hard50000.txt'
+import medium2500 from '@/assets/medium2500.txt'
+import easy from '@/assets/easy.txt'
 
 const generateSudoku = (response) => {
   const result = []
@@ -33,8 +34,8 @@ class Cell {
 }
 
 const collection = {
-  e: easy2500,
-  m: easy2500,
+  e: easy,
+  m: medium2500,
   h: hard50000
 }
 

@@ -1,8 +1,15 @@
 import { Link } from 'wouter'
 
+const maxNumbers = {
+  e: 5,
+  m: 2500,
+  h: 50000
+}
+
 export default function Launcher ({ children }) {
-  const randomNumber = Math.floor(Math.random() * 2500)
-  const route = `sudoku/${children[0].toLowerCase()}/${randomNumber}`
+  const childToRoute = children[0].toLowerCase()
+  const randomNumber = Math.floor(Math.random() * maxNumbers[childToRoute])
+  const route = `sudoku/${childToRoute}/${randomNumber}`
 
   return (
       <Link to={route} >{children}</Link>
