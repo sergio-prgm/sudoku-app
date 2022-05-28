@@ -1,0 +1,25 @@
+@forward "scss";
+@use "./scss/colors" as clr;
+@use "./scss/fonts" as f;
+
+
+.App {
+  text-align: center;
+}
+
+.btn {
+  font-family: f.$text-font;
+  font-weight: bold;
+  font-size: 1.25rem;
+  border:none;
+
+  &.main {
+    color: clr.$bg-dark;
+    background-color: clr.$main-light;
+  }
+
+  &.alt {
+    color: clr.$main-light;
+    background-color: transparent;
+  }
+}

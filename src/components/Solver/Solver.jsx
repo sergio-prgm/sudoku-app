@@ -27,10 +27,10 @@ function Solver () {
   }, [sudoku, pencil])
 
   return (
-    <>
-      <button onClick={handleClick}>Check</button>
+    <div>
+      <button onClick={handleClick} className='btn alt'>Check</button>
       <Result showResult={showResult} isSolved={isSolved} />
-    </>
+    </div>
   )
 }
 

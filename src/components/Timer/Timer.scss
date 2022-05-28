@@ -1,0 +1,8 @@
+@use "../../scss/colors" as clr;
+@use "../../scss/fonts" as f;
+
+.timer {
+  color: clr.$text;
+  font-family: f.$cell-font;
+  letter-spacing: 0.1ch;
+}

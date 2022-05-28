@@ -1,4 +1,35 @@
+@use '../../scss/colors' as clr;
 body {
-  background: hsl(154, 88%, 80%);
+  background-color: clr.$bg-dark;
 }
 
+.menubar {
+  display: flex;
+  justify-content: space-between;
+  padding-block: 1.5rem;
+  flex-wrap: wrap;
+  max-width: 44.5rem;
+  padding: .5rem;
+  margin-inline: auto;
+
+  .menubar-buttons {
+    width: 11.75rem;
+    display: flex;
+    justify-content: space-between;
+    button {
+    }
+  }
+}
+
+.game {
+  display: flex;
+  // justify-content: space-evenly;
+  justify-content: space-around;
+  max-width: 48rem;
+  height: 100%;
+  gap: 1.75rem;
+  margin-inline: auto;
+  flex-wrap: wrap;
+  padding: .5rem;
+  margin-bottom: 2rem;
+}

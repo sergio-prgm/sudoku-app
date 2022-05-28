@@ -1,0 +1,33 @@
+@use 'fonts' as f;
+@use 'colors' as clr;
+
+html {
+  box-sizing: border-box;
+  font-size: 112.5%;
+  font-family: f.$text-font;
+  color: clr.$text;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, p {
+  margin-top: 0;
+}
+
+a, a:visited, a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+p {
+  max-width: 55ch;
+}

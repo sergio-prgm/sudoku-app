@@ -12,6 +12,6 @@ export default function Launcher ({ children }) {
   const route = `sudoku/${childToRoute}/${randomNumber}`
 
   return (
-      <Link to={route} >{children}</Link>
+      <Link to={route} className='btn alt'>{children}</Link>
   )
 }

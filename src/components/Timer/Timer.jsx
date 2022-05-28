@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import './Timer.scss'
 
 function Timer () {
   const [time, setTime] = useState(0)
@@ -23,8 +24,8 @@ function Timer () {
   }, [])
 
   return (
-    <div>
-      Time: {
+    <div className='timer'>
+      {
         formatTime(time)
       }
     </div>

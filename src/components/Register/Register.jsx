@@ -23,7 +23,7 @@ export default function Register () {
     <form onSubmit={handleSubmit(onSubmit)}>
       <input placeholder="username" name="username" {...register('username', { required: true })} />
       <input placeholder="password" type='password' name="password" {...register('password', { required: true, minLength: 7 })} />
-      <button className="btn" >Register</button>
+      <button className="btn main" >Register</button>
     </form>
   )
 }

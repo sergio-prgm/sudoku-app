@@ -12,7 +12,7 @@ function Key ({ num, className, isNormal }) {
 
   return (
     <button className={className} onClick={handleClick} >
-      {num || 'Del '}
+      {num || 'Delete'}
     </button>
   )
 }

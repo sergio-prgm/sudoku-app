@@ -1,18 +1,54 @@
+@use '../../scss/fonts' as f;
+@use '../../scss/colors' as clr;
+$width: 12rem;
+
+.control-mode {
+  max-width: $width;
+  display: flex;
+  justify-content: space-between;
+  gap: .5rem;
+  margin-bottom: .5rem;
+
+  button {
+    font-size: 1rem;
+    font-family: f.$text-font;
+    font-weight: bold;   
+    font-style: italic;
+    width: 100%;
+    height: 1.75rem;
+    background-color: clr.$main-light;
+    border: none;
+  }
+}
+
 .control-pad {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  max-width: 12rem;
-  max-height: 12rem;
+  max-width: $width;
   margin-inline: auto;
   gap: .5rem;
 
   button {
-    height: 100%;
-    aspect-ratio: 1;
+    height: 3.5rem;
+    min-width: 3.5rem;
+    font-family: f.$cell-font;
+    font-weight: 800;
+    background-color: clr.$main-light;
+    border: none;
+
     &.controls-key {
       font-size: 1.75rem;
+
       &.small {
         font-size: 1rem;
+      }
+
+      &.del {
+        grid-column: 1 / 4;
+        font-size: 2rem;
+        font-family: f.$text-font;
+        font-style: italic;
+        font-weight: bold;
       }
     }
   }

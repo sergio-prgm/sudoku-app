@@ -1,5 +1,5 @@
 import { Route, Switch } from 'wouter'
-import './App.css'
+import './App.scss'
 
 import SudokuPage from '@/pages/SudokuPage/SudokuPage'
 import Home from '@/pages/Home/Home'

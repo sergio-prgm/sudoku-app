@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import useAddNum from '../../hooks/useAddNum'
 import Key from '../Key/Key'
-import Solver from '../Solver/Solver'
 import './styles.scss'
 
 export default function Controls () {
@@ -37,22 +36,21 @@ export default function Controls () {
     }
   })
   return (
-    <>
-    <div onKeyDown={handleMode}>
-      <button className='controls-button' onClick={() => setIsNormal(true)}>
-        Digit
-      </button>
-      <button className='controls-button' onClick={() => setIsNormal(false)}>
-        Candidate
-      </button>
-      <Solver />
-    </div >
-    <div className='control-pad' onKeyDown={handleKey}>
-      {keys.map(key => {
-        return <Key className={`controls-key ${isNormal || 'small'}`} isNormal={isNormal} num={key} key={key} />
-      })}
+    <div className='controls'>
+      <div className='control-mode' onKeyDown={handleMode}>
+        <button className='controls-button' onClick={() => setIsNormal(true)}>
+          Digit
+        </button>
+        <button className='controls-button' onClick={() => setIsNormal(false)}>
+          Candidate
+        </button>
+      </div >
+      <div className='control-pad' onKeyDown={handleKey}>
+        {keys.map(key => {
+          return <Key className={`controls-key ${isNormal || 'small'}`} isNormal={isNormal} num={key} key={key} />
+        })}
+      <Key className='controls-key del' isNormal={isNormal} num={0} key='0'></Key>
+      </div>
     </div>
-    <Key className='controls-key' isNormal={isNormal} num={0} key='0'></Key>
-    </>
   )
 }

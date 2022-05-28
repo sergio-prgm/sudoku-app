@@ -1,0 +1,35 @@
+@use '../../scss/colors' as clr;
+@use '../../scss/fonts' as f;
+
+main {
+  max-width: 70ch;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  text-align: start;
+
+  section:nth-child(n), :first-child{
+    margin-top: 5rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  section.launcher {
+    text-align: center;
+    & *:not(:first-child){
+      margin-inline: .75rem;
+    }
+  }
+
+  .rules {
+    & *{
+      margin-inline: auto;
+    }
+  }
+
+  .collections {
+
+  }
+}
