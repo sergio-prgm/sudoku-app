@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react'
 import './Timer.scss'
 
-function Timer () {
-  const [time, setTime] = useState(0)
+function Timer ({ time, setTime, stopped }) {
+  const [intervalId, setIntervalId] = useState()
 
   const renderTime = () => {
-    setInterval(() => {
+    const newInterval = setInterval(() => {
       setTime(prev => prev + 1)
     }, 1000)
+    setIntervalId(newInterval)
   }
+  // Add clear interval()
 
   const formatTime = time => {
     const mins = Math.floor(time / 60)
@@ -20,8 +22,11 @@ function Timer () {
   }
 
   useEffect(() => {
-    renderTime()
-  }, [])
+    if (stopped) {
+      clearInterval(intervalId)
+      setIntervalId(null)
+    } else renderTime()
+  }, [stopped])
 
   return (
     <div className='timer'>
