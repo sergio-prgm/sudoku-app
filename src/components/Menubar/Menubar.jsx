@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Timer from '../Timer/Timer'
 import useSolver from '@/hooks/useSolver'
 
@@ -18,13 +18,30 @@ function Menubar () {
     console.log(time)
   }
 
+  const finished = () => {
+    // setStopped(true)
+    return (
+      <p>
+        Congratulations, you solved the sudoku!!
+      </p>
+    )
+  }
+
+  useEffect(() => {
+    if (isSolved.every(val => val === 0)) {
+      setStopped(true)
+    }
+  }, [isSolved])
+
   return (
     <div className='menubar'>
       <Timer time={time} setTime={setTime} stopped={stopped}/>
       <div className='menubar-buttons'>
-        <p>
-          {!isSolved[0] && !isSolved[1] ? 'It is solved' : 'It isn\'t'}
-        </p>
+        {
+          (!isSolved[0] && !isSolved[1])
+            ? finished()
+            : ''
+        }
         <button className='btn alt' onClick={handleStop}>Pause</button>
         <button className='btn alt' onClick={handleSave}>Save</button>
       </div>
