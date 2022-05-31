@@ -4,7 +4,9 @@ import useUser from '@/hooks/useUser'
 export default function Header () {
   const { isLogged, logout } = useUser()
   // const [match] = useRoute('/login')
-  const { username } = JSON.parse(window.sessionStorage.getItem('jwt'))
+  const storage = isLogged
+    ? JSON.parse(window.sessionStorage.getItem('jwt'))
+    : null
   const [, params] = useRoute('/:path')
   console.log(params)
 
@@ -18,7 +20,7 @@ export default function Header () {
       ? <><Link href='/' onClick={handleClick}>
           Logout
         </Link>
-        <p>{username}</p>
+        <p>{storage.username}</p>
         </>
       : <><Link to='/login' >Login</Link>
             <Link to='/register' >Register</Link>
