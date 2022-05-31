@@ -1,23 +1,24 @@
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useState } from 'react'
-import loginSvc from '@/services/login'
+import { useLocation } from 'wouter'
+import useUser from '@/hooks/useUser'
 
 export default function Login () {
+  const { login, isLogged } = useUser()
   const { handleSubmit, register, formState: { errors } } = useForm()
-  const [isLogged, setIsLogged] = useState(false)
+  const [, pushLocation] = useLocation()
 
   const onSubmit = (values) => {
     const { username, password } = values
-    console.log(username, password)
-    return loginSvc(values)
-      .then(() => setIsLogged(true))
+    login({ username, password })
   }
 
-  if (isLogged) {
-    return <h3>
-      Login succesfull!!
-    </h3>
-  }
+  useEffect(() => {
+    if (isLogged) {
+      pushLocation('/')
+    }
+  })
+
   return (
     <>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
