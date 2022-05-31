@@ -1,0 +1,29 @@
+@use '../../scss/colors' as clr;
+
+$bg-dark: hsla(330, 3%, 11%, .5);
+
+.modal {
+  background-color: $bg-dark;
+  backdrop-filter: blur(7px);
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+
+  &-content {
+    background-color: clr.$text;
+    color: clr.$bg-dark;
+    width: 300px;
+    padding: .75rem 1rem;
+    height: 80vh;
+    margin: 10vh auto;
+    position: relative;
+
+    &.btn {
+      display: block;
+      margin-bottom: 32px;
+    }
+  }
+}

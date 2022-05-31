@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './Timer.scss'
 
-function Timer ({ time, setTime, stopped }) {
+function Timer ({ time, setTime, stopped = true, isDark = false }) {
   const [intervalId, setIntervalId] = useState()
 
   const renderTime = () => {
@@ -29,11 +29,11 @@ function Timer ({ time, setTime, stopped }) {
   }, [stopped])
 
   return (
-    <div className='timer'>
+    <span className={`timer ${isDark && 'dark'}`}>
       {
         formatTime(time)
       }
-    </div>
+    </span>
   )
 }
 

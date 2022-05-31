@@ -17,6 +17,7 @@ $width: 12rem;
     width: 100%;
     height: 1.75rem;
     background-color: clr.$main-light;
+    color: black;
     border: none;
   }
 }
@@ -35,6 +36,7 @@ $width: 12rem;
     font-weight: bold;
     font-style: italic;
     background-color: clr.$main-light;
+    color: black;
     border: none;
 
     &.controls-key {

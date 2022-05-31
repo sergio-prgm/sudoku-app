@@ -1,4 +1,5 @@
 @use '../../scss/colors' as clr;
+
 body {
   background-color: clr.$bg-dark;
 }
@@ -12,13 +13,13 @@ body {
   padding: .5rem;
   margin-inline: auto;
 
-  .menubar-buttons {
-    width: 11.75rem;
-    display: flex;
-    justify-content: space-between;
-    button {
-    }
-  }
+  // .menubar-buttons {
+  //   width: 11.75rem;
+  //   display: flex;
+  //   justify-content: space-between;
+  //   button {
+  //   }
+  // }
 }
 
 .game {
