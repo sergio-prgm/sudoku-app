@@ -7,12 +7,12 @@ function useSolver (e) {
 
   const checkChanged = () => {
     if (!sudoku) return
-    return sudoku.filter(cell => !cell.readOnly && !cell.isChanged)
+    return sudoku.filter(cell => !cell.original).filter(cell => !cell.readOnly && !cell.isChanged)
   }
 
   const checkIsTrue = () => {
     if (!pencil) return
-    return pencil.filter(cell => !cell.isCorrect)
+    return pencil.filter(cell => !cell.original).filter(cell => !cell.isCorrect)
   }
 
   useEffect(() => {

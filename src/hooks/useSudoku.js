@@ -15,7 +15,7 @@ export default function useSudoku (num, difficulty = 'm') {
     if (sudoku && !pencil) {
       setPencil(
         sudoku
-          .filter(cell => !cell.readOnly)
+          .filter(cell => !cell.readOnly && !cell.original)
           .map(({ row, col, isCorrect }) =>
             ({ row, col, marks: new Set([]), isCorrect })
           ))

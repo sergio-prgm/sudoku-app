@@ -12,6 +12,8 @@ const generateSudoku = (response) => {
       const cell = new Cell(index, Number(value))
       result.push(cell)
     })
+
+  result.push({ original: response })
   return result
 }
 

@@ -1,6 +1,10 @@
-import { useEffect, useState } from 'react'
-import Timer from '../Timer/Timer'
+import { useEffect, useState, useContext } from 'react'
+import Timer from '@/components/Timer/Timer'
 import Modal from '@/components/Modal/Modal'
+
+import Context from '@/context/SudokuContext'
+
+import useUser from '@/hooks/useUser'
 import useSolver from '@/hooks/useSolver'
 
 function Menubar () {
@@ -8,18 +12,15 @@ function Menubar () {
   const [stopped, setStopped] = useState(false)
   const [showModal, setShowModal] = useState(false)
   const { isSolved } = useSolver()
-  // const [clickEvent, setClickedEvent] = useState()
-  // const { isSolved } = useSolver(clickEvent)
+  const { isLogged, addSudoku } = useUser()
+  const { sudoku } = useContext(Context)
 
-  // const handleSave = (e) => {
-  //   setClickedEvent(e)
-  //   console.log(isSolved)
-  // }
   const solved = isSolved.every(val => val === 0)
 
   const handlePause = () => {
     setStopped(true)
     setShowModal(true)
+    console.log(isSolved)
   }
 
   const handleClose = () => {
@@ -29,14 +30,12 @@ function Menubar () {
     }
   }
 
-  // const finished = () => {
-  //   // setStopped(true)
-  //   return (
-  //     <p>
-  //       Congratulations, you solved the sudoku!!
-  //     </p>
-  //   )
-  // }
+  const handleSave = () => {
+    if (!isLogged) return console.log('not logged')
+    console.log(sudoku[81].original)
+    const original = sudoku[81].original
+    addSudoku({ original })
+  }
 
   useEffect(() => {
     if (solved) {
@@ -48,14 +47,7 @@ function Menubar () {
   return (
     <div className='menubar'>
       <Timer time={time} setTime={setTime} stopped={stopped}/>
-      {/* <div className='menubar-buttons'> */}
-        {/* {
-          (!isSolved[0] && !isSolved[1])
-            ? finished()
-            : ''
-        } */}
         <button className='btn alt' onClick={handlePause}>Pause</button>
-      {/* </div> */}
       { showModal &&
         <Modal onClose={handleClose}>
           { solved
@@ -66,7 +58,7 @@ function Menubar () {
               Sudoku paused at <Timer time={time} isDark={true} /> minutes.
             </p>
           }
-          <button className='btn main' onClick={handlePause}>Save Sudoku</button>
+          <button className='btn main' onClick={handleSave}>Save Sudoku</button>
           <button className='btn main' onClick={handleClose}>Resume</button>
         </Modal>}
     </div>
