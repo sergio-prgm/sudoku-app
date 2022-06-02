@@ -1,5 +1,11 @@
 @use '../../scss/colors' as clr;
 
+@mixin bp {
+  @media (min-width: 744px) {
+    @content;
+  }
+}
+
 body {
   background-color: clr.$bg-dark;
 }
@@ -12,20 +18,18 @@ body {
   max-width: 44.5rem;
   padding: .5rem;
   margin-inline: auto;
-
-  // .menubar-buttons {
-  //   width: 11.75rem;
-  //   display: flex;
-  //   justify-content: space-between;
-  //   button {
-  //   }
-  // }
+  margin-top: 1.5rem;
 }
 
 .game {
   display: flex;
   // justify-content: space-evenly;
   justify-content: space-around;
+
+  @include bp {
+    justify-content: space-between;
+  }
+
   max-width: 48rem;
   height: 100%;
   gap: 1.75rem;

@@ -17,10 +17,12 @@
   &.main {
     color: clr.$bg-dark;
     background-color: clr.$main-light;
+    padding: .35rem 1rem;
   }
 
   &.alt {
     color: clr.$main-light;
     background-color: transparent;
+    padding: 0;
   }
 }

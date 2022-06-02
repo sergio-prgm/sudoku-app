@@ -1,0 +1,23 @@
+.header {
+  max-width: 44.5rem;
+  padding-inline: .5rem;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+
+  &--logo {
+    cursor: pointer;
+  }
+
+  &--buttons {
+    .btn {
+      display: inline-block;
+
+      &:first-child {
+        margin-right: 0.75rem;
+      }
+    }
+  }
+}
