@@ -10,7 +10,6 @@ export default function useUser () {
     loginSvc({ username, password })
       .then(jwt => {
         window.sessionStorage.setItem('jwt', JSON.stringify(jwt))
-        console.log(jwt)
         setJWT(jwt)
       })
       .catch(error => {
@@ -21,14 +20,20 @@ export default function useUser () {
 
   const logout = useCallback(() => {
     setJWT(null)
+    window.sessionStorage.removeItem('jwt')
   }, [setJWT])
 
   const addSudoku = useCallback(({ original }) => {
-    // eslint-disable-next-line dot-notation
-    const token = JSON.parse(jwt).jwt
+    const token = jwt.jwt
     addSudokuSvc({ original, token })
-      .then(sudoku => setSavedSudoku(prev => prev.push(sudoku)))
-      .catch(error => console.log(error))
+      .then(sudoku => {
+        const ok = Boolean(sudoku)
+        setSavedSudoku(prev => prev.push(sudoku))
+        return ok
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }, [setJWT, setSavedSudoku])
 
   return {

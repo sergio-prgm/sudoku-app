@@ -4,16 +4,20 @@ import Modal from '@/components/Modal/Modal'
 
 import Context from '@/context/SudokuContext'
 
+import { useLocation } from 'wouter'
 import useUser from '@/hooks/useUser'
 import useSolver from '@/hooks/useSolver'
 
 function Menubar () {
+  const { sudoku } = useContext(Context)
+  const [, setLocation] = useLocation()
+
   const [time, setTime] = useState(0)
   const [stopped, setStopped] = useState(false)
   const [showModal, setShowModal] = useState(false)
+
   const { isSolved } = useSolver()
   const { isLogged, addSudoku } = useUser()
-  const { sudoku } = useContext(Context)
 
   const solved = isSolved.every(val => val === 0)
 
@@ -31,10 +35,15 @@ function Menubar () {
   }
 
   const handleSave = () => {
+    console.log(isLogged)
     if (!isLogged) return console.log('not logged')
-    console.log(sudoku[81].original)
-    const original = sudoku[81].original
-    addSudoku({ original })
+    try {
+      const original = sudoku[81].original
+      addSudoku({ original })
+      setLocation('/')
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   useEffect(() => {

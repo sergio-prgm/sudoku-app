@@ -1,6 +1,7 @@
 const API_URL = 'http://localhost:4000/api'
 
 export default function addSudoku ({ original, token: jwt }) {
+  console.log(jwt)
   return fetch(`${API_URL}/sudokus`, {
     method: 'POST',
     headers: {
