@@ -20,7 +20,7 @@ $bg-dark: hsla(330, 3%, 11%, .5);
     height: 80vh;
     margin: 10vh auto;
     position: relative;
-    overflow: scroll;
+    overflow-y: auto;
 
     &.btn {
       display: block;
