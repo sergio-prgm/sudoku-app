@@ -22,7 +22,12 @@ export default function Home () {
         <Launcher>Hard</Launcher>
       </section>
       <section className='rules'>
-        <Rules />
+        <article>
+          <header>
+            <h2>The rules of Sudoku</h2>
+          </header>
+          <Rules />
+        </article>
       </section>
       <section className='collections'>
         <h2>Browse sudoku collection</h2>
