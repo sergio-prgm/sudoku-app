@@ -1,11 +1,13 @@
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import getSudoku from '../services/getSudoku'
 import SudokuContext from '../context/SudokuContext'
 
 export default function useSudoku (num, difficulty = 'm') {
   const { sudoku, setSudoku, pencil, setPencil } = useContext(SudokuContext)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
+    setLoading(true)
     getSudoku(num, difficulty).then(sudoku => {
       setSudoku(sudoku)
     })
@@ -21,5 +23,5 @@ export default function useSudoku (num, difficulty = 'm') {
           ))
     }
   }, [sudoku, setPencil])
-  return { sudoku, pencil, setPencil }
+  return { sudoku, pencil, setPencil, loading, setLoading }
 }
