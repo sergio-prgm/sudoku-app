@@ -23,8 +23,8 @@ export default function Header () {
           <p className='btn alt'>{storage.username}</p>
         </div>
       : <div className='header--buttons'>
-          <Link to='/login' >Login</Link>
-          <Link to='/register' >Register</Link>
+          <Link to='/login' className='btn alt'>Login</Link>
+          <Link to='/register' className='btn alt' >Register</Link>
         </div>
   }
 

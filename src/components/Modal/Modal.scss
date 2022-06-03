@@ -15,11 +15,12 @@ $bg-dark: hsla(330, 3%, 11%, .5);
   &-content {
     background-color: clr.$text;
     color: clr.$bg-dark;
-    width: 300px;
+    width: clamp(310px, 85vw, 60ch);
     padding: .75rem 1rem;
     height: 80vh;
     margin: 10vh auto;
     position: relative;
+    overflow: scroll;
 
     &.btn {
       display: block;
