@@ -1,5 +1,6 @@
 import { useContext, useEffect } from 'react'
 import Rules from '@/components/Rules/Rules'
+import Tutorial from '@/components/Tutorial/Tutorial'
 import Launcher from '@/components/Launcher/Launcher'
 import './Home.scss'
 import Context from '@/context/UserContext'
@@ -27,6 +28,12 @@ export default function Home () {
             <h2>The rules of Sudoku</h2>
           </header>
           <Rules />
+        </article>
+        <article>
+          <header>
+            <h2>How to play</h2>
+          </header>
+          <Tutorial />
         </article>
       </section>
       <section className='collections'>
