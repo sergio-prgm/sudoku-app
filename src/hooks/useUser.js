@@ -4,7 +4,7 @@ import addSudokuSvc from '@/services/addSudoku'
 import Context from '@/context/UserContext'
 
 export default function useUser () {
-  const { savedSudoku, setSavedSudoku, jwt, setJWT } = useContext(Context)
+  const { savedSudokus, setSavedSudokus, jwt, setJWT } = useContext(Context)
 
   const login = useCallback(({ username, password }) => {
     loginSvc({ username, password })
@@ -23,24 +23,24 @@ export default function useUser () {
     window.sessionStorage.removeItem('jwt')
   }, [setJWT])
 
-  const addSudoku = useCallback(({ original }) => {
+  const addSudoku = useCallback(({ ref }) => {
     const token = jwt.jwt
-    addSudokuSvc({ original, token })
+    addSudokuSvc({ ref, token })
       .then(sudoku => {
         const ok = Boolean(sudoku)
-        setSavedSudoku(prev => prev.push(sudoku))
+        setSavedSudokus(prev => prev.push(sudoku))
         return ok
       })
       .catch(error => {
         console.log(error)
       })
-  }, [setJWT, setSavedSudoku])
+  }, [setJWT, setSavedSudokus])
 
   return {
     isLogged: Boolean(jwt),
     login,
     logout,
     addSudoku,
-    savedSudoku
+    savedSudokus
   }
 }

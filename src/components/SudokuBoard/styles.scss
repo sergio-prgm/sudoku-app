@@ -21,12 +21,13 @@ $width: 27rem;
   aspect-ratio: 1;
   // margin: 5rem auto;
   position: relative;
+
   .row {
     display: grid;
     grid-template-columns: repeat(9, 1fr);
     gap: 0;
     position: relative;
-    
+
     .cell {
       font-family: f.$cell-font;
       margin: 0;
@@ -56,9 +57,9 @@ $width: 27rem;
       }
 
       &.selected {
-        background-color: clr.$main-lighter !important;
+        background-color: clr.$main-lighter  !important;
       }
-    
+
       .pencilMark {
         font-size: 1rem;
         display: block;
@@ -79,8 +80,8 @@ $width: 27rem;
       .cell {
         border-bottom: 2px solid $border_color;
         z-index: 99;
-        
-      &:nth-child(3n):not(:last-child) {
+
+        &:nth-child(3n):not(:last-child) {
           z-index: 999
         }
       }
@@ -96,12 +97,13 @@ $width: 27rem;
         background-color: $alternate_color;
       }
     }
+
     &:nth-child(2n + 1) {
       .cell:nth-child(2n + 1):not(.readOnly) {
         background-color: $alternate_color;
       }
     }
-    
+
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
       -webkit-appearance: none;

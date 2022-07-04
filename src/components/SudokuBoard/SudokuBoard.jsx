@@ -1,9 +1,10 @@
-import useSudoku from '../../hooks/useSudoku'
-import Cell from '../Cell/Cell'
-import Loader from '@/components/Loader/Loader'
-import './styles.scss'
-import { useRoute } from 'wouter'
 import { useEffect } from 'react'
+import { useRoute } from 'wouter'
+import useSudoku from '../../hooks/useSudoku'
+import Cell from '@/components/Cell/Cell'
+import Loader from '@/components/Loader/Loader'
+
+import './styles.scss'
 
 export default function SudokuBoard () {
   const [, params] = useRoute('/sudoku/:dif/:index')
@@ -31,8 +32,8 @@ export default function SudokuBoard () {
   return (
     <div className="sudoku-board">
       {sudoku && renderit().map((row, index) => <div className="row" key={index} >
-        {row.map(cell => {
-          return <Cell cell={cell} key={cell.index} />
+        {row.map((cell, index) => {
+          return <Cell cell={cell} key={cell.index || index } />
         }
         )}
       </div>)}

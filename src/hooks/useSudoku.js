@@ -8,7 +8,12 @@ export default function useSudoku (num, difficulty = 'm') {
 
   useEffect(() => {
     setLoading(true)
+    // getSudoku(num, difficulty).then(sudoku => {
+    //   console.log(sudoku)
+    //   setSudoku(sudoku)
+    // })
     getSudoku(num, difficulty).then(sudoku => {
+      console.log(sudoku)
       setSudoku(sudoku)
     })
   }, [setSudoku])
@@ -17,7 +22,7 @@ export default function useSudoku (num, difficulty = 'm') {
     if (sudoku && !pencil) {
       setPencil(
         sudoku
-          .filter(cell => !cell.readOnly && !cell.original)
+          .filter(cell => !cell.readOnly && !cell.ref)
           .map(({ row, col, isCorrect }) =>
             ({ row, col, marks: new Set([]), isCorrect })
           ))

@@ -41,8 +41,8 @@ function Menubar () {
     console.log(isLogged)
     if (!isLogged) return console.log('not logged')
     try {
-      const original = sudoku[81].original
-      addSudoku({ original })
+      const ref = sudoku[81].ref
+      addSudoku({ ref })
       setLocation('/')
     } catch (error) {
       console.log(error)
