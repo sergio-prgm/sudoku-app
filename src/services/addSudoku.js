@@ -1,14 +1,15 @@
-const API_URL = 'http://localhost:4000/api'
+import { URL_SUDOKU } from './settings'
 
-export default function addSudoku ({ ref, token: jwt }) {
+export default function addSudoku ({ body, token: jwt }) {
   console.log(jwt)
-  return fetch(`${API_URL}/sudoku`, {
+  console.log(body)
+  return fetch(URL_SUDOKU, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${jwt}`
     },
-    body: JSON.stringify({ ref })
+    body: JSON.stringify(body)
   }).then(res => {
     if (!res.ok) throw new Error('response is not ok')
     return res.json()

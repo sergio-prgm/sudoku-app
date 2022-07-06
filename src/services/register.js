@@ -1,7 +1,7 @@
-const API_URL = 'http://localhost:4000/api'
+import { URL_USERS } from './settings'
 
 export default function register ({ username, password }) {
-  return fetch(`${API_URL}/users`, {
+  return fetch(URL_USERS, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

@@ -1,9 +1,11 @@
 import { useContext, useEffect, useState } from 'react'
 import getSudoku from '../services/getSudoku'
 import SudokuContext from '../context/SudokuContext'
+import Context from '@/context/UserContext'
 
 export default function useSudoku (num, difficulty = 'm') {
-  const { sudoku, setSudoku, pencil, setPencil } = useContext(SudokuContext)
+  const { meta, setMeta, sudoku, setSudoku, pencil, setPencil } = useContext(SudokuContext)
+  const { jwt } = useContext(Context)
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
@@ -12,8 +14,10 @@ export default function useSudoku (num, difficulty = 'm') {
     //   console.log(sudoku)
     //   setSudoku(sudoku)
     // })
-    getSudoku(num, difficulty).then(sudoku => {
-      console.log(sudoku)
+    const token = jwt?.jwt ?? 'unAuthed'
+    getSudoku(num, difficulty, token).then(sudoku => {
+      const metaData = sudoku.pop()
+      setMeta(metaData)
       setSudoku(sudoku)
     })
   }, [setSudoku])
@@ -28,5 +32,5 @@ export default function useSudoku (num, difficulty = 'm') {
           ))
     }
   }, [sudoku, setPencil])
-  return { sudoku, pencil, setPencil, loading, setLoading }
+  return { sudoku, pencil, setPencil, loading, setLoading, meta, setMeta }
 }

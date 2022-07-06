@@ -10,9 +10,10 @@ import useUser from '@/hooks/useUser'
 import useSolver from '@/hooks/useSolver'
 import Toggle from '@/components/Toggle/Toggle'
 import Tutorial from '@/components/Tutorial/Tutorial'
+import useSudoku from '@/hooks/useSudoku'
 
 function Menubar () {
-  const { sudoku } = useContext(Context)
+  const { sudoku, setSudoku } = useContext(Context)
   const [, setLocation] = useLocation()
 
   const [time, setTime] = useState(0)
@@ -21,11 +22,13 @@ function Menubar () {
 
   const { isSolved } = useSolver()
   const { isLogged, addSudoku } = useUser()
+  const { meta } = useSudoku()
 
   const solved = isSolved.every(val => val === 0)
 
   const handlePause = () => {
     setStopped(true)
+    if (sudoku[81]) console.log(sudoku[81].time)
     setShowModal(true)
     console.log(isSolved)
   }
@@ -38,12 +41,22 @@ function Menubar () {
   }
 
   const handleSave = () => {
-    console.log(isLogged)
     if (!isLogged) return console.log('not logged')
     try {
-      const ref = sudoku[81].ref
-      addSudoku({ ref })
-      setLocation('/')
+      const sudokuStr = sudoku
+        .map(cell => cell.value)
+        .join('')
+      const ref = meta.ref
+
+      const sudokuToSave = {
+        current: sudokuStr,
+        ref,
+        time,
+        isSolved: solved
+      }
+      console.log(sudokuToSave)
+      addSudoku(sudokuToSave)
+      // setLocation('/')
     } catch (error) {
       console.log(error)
     }
@@ -55,6 +68,10 @@ function Menubar () {
       setShowModal(true)
     }
   }, [isSolved])
+
+  useEffect(() => {
+    if (meta) setTime(meta.time)
+  }, [meta])
 
   return (
     <div className='menubar'>

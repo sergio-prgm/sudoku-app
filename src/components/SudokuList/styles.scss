@@ -1,0 +1,22 @@
+@use '../../scss/colors' as clr;
+
+div {
+  ul.sudoku-list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    gap: .5rem;
+
+    li {
+      background-color: clr.$main-lighter;
+      color: clr.$bg-dark;
+      text-decoration: none;
+      padding: .35rem .5rem;
+      font-weight: bold;
+
+      &.solved {
+        background-color: clr.$counter-light;
+      }
+    }
+  }
+}

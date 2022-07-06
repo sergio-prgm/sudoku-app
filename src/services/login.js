@@ -1,7 +1,7 @@
-const API_URL = 'http://localhost:4000/api'
+import { URL_LOGIN } from './settings'
 
 export default function login ({ username, password }) {
-  return fetch(`${API_URL}/login`, {
+  return fetch(URL_LOGIN, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

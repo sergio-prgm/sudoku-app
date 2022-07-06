@@ -22,6 +22,7 @@ export default function SudokuBoard () {
 
   useEffect(() => {
     if (!sudoku) return
+    console.log(sudoku)
     setLoading(false)
   }, [sudoku])
 

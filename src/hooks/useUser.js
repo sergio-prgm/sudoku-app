@@ -23,12 +23,11 @@ export default function useUser () {
     window.sessionStorage.removeItem('jwt')
   }, [setJWT])
 
-  const addSudoku = useCallback(({ ref }) => {
+  const addSudoku = useCallback((body) => {
     const token = jwt.jwt
-    addSudokuSvc({ ref, token })
+    addSudokuSvc({ body, token })
       .then(sudoku => {
         const ok = Boolean(sudoku)
-        setSavedSudokus(prev => prev.push(sudoku))
         return ok
       })
       .catch(error => {

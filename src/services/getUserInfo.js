@@ -1,7 +1,7 @@
-const API_URL = 'http://localhost:4000/api'
+import { URL_USERS } from './settings'
 
 export default function getUserInfo ({ token: jwt }) {
-  return fetch(`${API_URL}/users`, {
+  return fetch(URL_USERS, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
